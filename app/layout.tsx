@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-
+import "./_styles/global.css";
+import Logo from "./_components/Logo";
 
 export const metadata: Metadata = {
   title: "Car Rental",
@@ -13,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      >
+      <body className="min-h-screen">
+        <Logo />
         {children}
       </body>
     </html>
