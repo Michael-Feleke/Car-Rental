@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import "./_styles/global.css";
-import Logo from "./_components/Logo";
+import "@/app/_styles/global.css";
+import { Josefin_Sans } from "next/font/google";
+import Header from "./_components/Header";
+
+const josefin = Josefin_Sans({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -18,9 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen">
-        <Logo />
-        {children}
+      <body
+        className={`${josefin.className} antialiased min-h-screen flex flex-col`}
+      >
+        <Header />
+        <div className="flex-1 px-8 py-12 ">
+          <main className="max-w-7xl mx-auto">{children}</main>
+        </div>
+        <footer>
+          <p className="text-center text-gray-400 text-sm p-4">
+            &copy; {new Date().getFullYear()} GoDrive. All rights reserved.
+          </p>
+        </footer>
       </body>
     </html>
   );
