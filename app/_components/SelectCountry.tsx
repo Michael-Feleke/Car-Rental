@@ -9,7 +9,6 @@ async function SelectCountry({
 }: SelectCountryProps) {
   const countries = await getCountries();
 
-  console.log(countries);
   const flag =
     countries.find((country) => country.name === defaultCountry)?.flag ?? "";
 
