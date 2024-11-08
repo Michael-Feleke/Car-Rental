@@ -1,46 +1,15 @@
 import { Metadata } from "next";
-import CarCard from "../_components/CarCard";
+import { Suspense } from "react";
+import CarList from "../_components/CarList";
+import Spinner from "../_components/Spinner";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Cars",
 };
 
-export function page() {
-  const cars = [
-    {
-      id: 1,
-      name: "Model S",
-      maxCapacity: 5,
-      dailyPrice: 150,
-      discount: 0,
-      image: "public/images/bg-car-2.jpg",
-    },
-    {
-      id: 2,
-      name: "Model 3",
-      maxCapacity: 5,
-      dailyPrice: 100,
-      discount: 10,
-      image: "public/images/bg-car-2.jpeg",
-    },
-    {
-      id: 3,
-      name: "Model X",
-      maxCapacity: 7,
-      dailyPrice: 200,
-      discount: 20,
-      image: "public/images/bg-car-2.jpeg",
-    },
-    {
-      id: 4,
-      name: "Model Y",
-      maxCapacity: 5,
-      dailyPrice: 120,
-      discount: 0,
-      image: "public/images/logo.jpeg",
-    },
-  ];
-
+function Page() {
   return (
     <div>
       <h1 className="text-4xl mb-5 text-red-500 font-medium">
@@ -56,15 +25,11 @@ export function page() {
         top-of-the-line cars.
       </p>
 
-      {/* {cars.length > 0 && (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cars.map((car) => (
-            <CarCard car={car} key={car.id} />
-          ))}
-        </div>
-      )} */}
+      <Suspense fallback={<Spinner />}>
+        <CarList />
+      </Suspense>
     </div>
   );
 }
 
-export default page;
+export default Page;
