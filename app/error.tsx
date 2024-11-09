@@ -3,8 +3,8 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 
 interface ErrorProps {
-  error: Error; // TypeScript Error type for the error object
-  reset: () => void; // Function type for resetting or navigating
+  error: Error;
+  reset: () => void;
 }
 
 function Error({ error, reset }: ErrorProps) {
