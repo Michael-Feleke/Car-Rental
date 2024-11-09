@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: PageProps) {
 export async function generateStaticParams() {
   const cars = await getCars();
 
-  const ids = cars.map((car) => {
-    carId: car._id.toString();
-  });
+  const ids = cars.map((car) => ({
+    carId: car._id.toString(),
+  }));
 
   return ids;
 }
@@ -149,7 +149,7 @@ export default async function Page({ params }: PageProps) {
               </div>
               <div className="flex items-center mb-1">
                 <InformationCircleIcon className="h-5 w-5 text-gray-500 mr-2" />
-                <span>Safety Features: {features.safety.join(", ")}</span>
+                {/* <span>Safety Features: {features.safety.join(", ")}</span> */}
               </div>
               <div className="flex items-center mb-1">
                 <InformationCircleIcon className="h-5 w-5 text-gray-500 mr-2" />
