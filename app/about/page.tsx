@@ -1,12 +1,18 @@
 import { Metadata } from "next";
 import aboutImage from "@/public/images/bg-car-2.jpg";
 import Image from "next/image";
+import { getCars } from "../_lib/fetchCars";
+
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "About",
 };
 
-function page() {
+async function page() {
+  const cars = await getCars();
+  const numberOfCars = cars.length;
+
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
       <div className="col-span-3">
@@ -22,10 +28,10 @@ function page() {
             the perfect car for you.
           </p>
           <p>
-            Our fleet includes the latest models from top brands, ensuring you
-            enjoy both style and comfort. From sleek sedans to spacious SUVs,
-            all our cars are well-maintained and ready to hit the road.
-            Experience a smooth and enjoyable ride with GoDrive.
+            Our fleet of {numberOfCars} cars includes the latest models from top
+            brands, ensuring you enjoy both style and comfort. From sleek sedans
+            to spacious SUVs, all our cars are well-maintained and ready to hit
+            the road. Experience a smooth and enjoyable ride with GoDrive.
           </p>
           <p>
             With flexible rental options, competitive pricing, and a focus on
