@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb"; // Still use ObjectId
 
 export async function getCarById(id: string) {
   const client = await clientPromise; // Await the MongoDB connection
-  const db = client.db("car-rental"); // Select the database
+  const db = client.db("car-rentals"); // Select the database
 
   // Ensure the id is a valid ObjectId string
   if (!ObjectId.isValid(id)) {
