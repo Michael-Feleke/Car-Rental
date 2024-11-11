@@ -1,24 +1,25 @@
-import { routeConstants } from "../constants";
+import { ROUTE_CONSTANTS } from "../constants";
+import { RouteLabels } from "../enums";
 import { IRoute } from "./types";
 
 export const routes: IRoute[] = [
-  { path: routeConstants.home, label: "Home" },
-  { path: routeConstants.cars, label: "Cars" },
-  { path: routeConstants.about, label: "About" },
-  { path: routeConstants.account.base, label: "Your Account" },
+  { path: ROUTE_CONSTANTS.home, label: RouteLabels.Home },
+  { path: ROUTE_CONSTANTS.cars, label: RouteLabels.Cars },
+  { path: ROUTE_CONSTANTS.about, label: RouteLabels.About },
+  { path: ROUTE_CONSTANTS.account.base, label: RouteLabels.Account },
 ];
 
 export const accountRoutes: IRoute[] = [
   {
-    path: routeConstants.account.base,
-    label: "Home",
+    path: ROUTE_CONSTANTS.account.base,
+    label: RouteLabels.Home,
   },
   {
-    path: routeConstants.account.profile,
-    label: "Profile",
+    path: ROUTE_CONSTANTS.account.profile,
+    label: RouteLabels.Profile,
   },
   {
-    path: routeConstants.account.reservations,
-    label: "Reservations",
+    path: ROUTE_CONSTANTS.account.reservations,
+    label: RouteLabels.Reservations,
   },
 ];

@@ -1,12 +1,18 @@
 import { Metadata } from "next";
 import aboutImage from "@/public/images/bg-car-2.jpg";
 import Image from "next/image";
-import { getCars } from "../_lib/fetchCars";
+import { getCars } from "../_lib/getCars";
+import { MetaTitles } from "../_utils/enums";
+import {
+  ABOUT_PAGE_REVALIDATE_TIME,
+  ROUTE_CONSTANTS,
+} from "../_utils/constants";
+import Link from "next/link";
 
-export const revalidate = 86400;
+export const revalidate = ABOUT_PAGE_REVALIDATE_TIME;
 
 export const metadata: Metadata = {
-  title: "About",
+  title: MetaTitles.About,
 };
 
 async function page() {
@@ -83,12 +89,12 @@ async function page() {
           </p>
 
           <div>
-            <a
-              href="/cars"
+            <Link
+              href={ROUTE_CONSTANTS.cars}
               className="inline-block mt-4 bg-red-600 px-8 py-5 text-white text-lg font-semibold hover:bg-red-700 transition-all"
             >
               Explore our fleet of cars
-            </a>
+            </Link>
           </div>
         </div>
       </div>
