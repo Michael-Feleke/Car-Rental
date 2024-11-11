@@ -1,14 +1,12 @@
-"use client";
-
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 function NotFound() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-8 h-full">
-      <ExclamationCircleIcon className="h-20 w-20  mb-6 text-red-500" />
-      <h1 className="text-5xl font-bold text-red-500  mb-4">Car Not Found</h1>
-      <p className="text-lg  mb-8 ">
+      <ExclamationCircleIcon className="h-20 w-20 mb-6 text-red-500" />
+      <h1 className="text-5xl font-bold text-red-500 mb-4">Car Not Found</h1>
+      <p className="text-lg mb-8 ">
         We couldn&apos;t find the car you were looking for. It might have been
         removed, renamed, or is temporarily unavailable.
       </p>

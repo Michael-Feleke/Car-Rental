@@ -2,11 +2,13 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import CarList from "../_components/CarList";
 import Spinner from "../_components/Spinner";
+import { CAR_LISTS_REVALIDATE_TIME } from "../_utils/constants";
+import { MetaTitles } from "../_utils/enums";
 
-export const revalidate = 3600;
+export const revalidate = CAR_LISTS_REVALIDATE_TIME;
 
 export const metadata: Metadata = {
-  title: "Cars",
+  title: MetaTitles.Cars,
 };
 
 function Page() {
