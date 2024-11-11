@@ -1,7 +1,8 @@
 import { Metadata } from "next";
+import { MetaTitles } from "../_utils/enums";
 
 export const metadata: Metadata = {
-  title: "Account",
+  title: MetaTitles.Account,
 };
 
 function page() {

@@ -1,7 +1,10 @@
+import { ROUTE_CONSTANTS } from "@/app/_utils/constants";
+import { MetaTitles } from "@/app/_utils/enums";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Reservations",
+  title: MetaTitles.Reservations,
 };
 
 export default function Page() {
@@ -18,9 +21,12 @@ export default function Page() {
         true ? (
           <p className="text-lg">
             You have no reservations yet. Check out our{" "}
-            <a className="underline text-red-500" href="/cars">
+            <Link
+              className="underline text-red-500"
+              href={ROUTE_CONSTANTS.cars}
+            >
               available cars &rarr;
-            </a>
+            </Link>
           </p>
         ) : (
           ""
