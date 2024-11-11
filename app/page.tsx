@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { routeConstants } from "./_utils/constants";
+import { ROUTE_CONSTANTS } from "./_utils/constants";
 import backgroundImage from "@/public/images/bg-image.jpeg";
 
 function Home() {
@@ -22,7 +22,7 @@ function Home() {
           Car Rental
         </h1>
         <Link
-          href={routeConstants.cars}
+          href={ROUTE_CONSTANTS.cars}
           className="bg-red-600 px-8 py-5 text-lg font-semibold hover:bg-red-700 transition-all duration-200 ease-in-out rounded-lg"
         >
           View Cars
