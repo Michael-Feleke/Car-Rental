@@ -1,11 +1,15 @@
-import { getCars } from "../_lib/fetchCars";
+import { getCars } from "../_lib/getCars";
 import CarCard from "./CarCard";
 
 async function CarList() {
   const cars = await getCars();
 
   if (cars.length === 0) {
-    return <p>No cars available</p>;
+    return (
+      <div className="flex justify-center items-center text-center p-8  rounded-lg shadow-lg">
+        <p className="text-xl font-semibold ">No cars available</p>
+      </div>
+    );
   }
 
   return (
