@@ -1,5 +1,5 @@
 import { customerReviews } from "@/app/_components/types";
-import { getCars } from "@/app/_lib/fetchCars";
+import { getCars } from "@/app/_lib/getCars";
 import { getCarById } from "@/app/_lib/getCarById";
 import {
   UsersIcon,
@@ -9,16 +9,12 @@ import {
   Cog6ToothIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { CarDetailPageProps } from "./types";
+import Link from "next/link";
+import { ROUTE_CONSTANTS } from "@/app/_utils/constants";
 
-interface PageProps {
-  params: {
-    carId: string;
-  };
-}
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: CarDetailPageProps) {
   const car = await getCarById(params.carId);
-
   const { name } = car;
 
   return {
@@ -28,7 +24,6 @@ export async function generateMetadata({ params }: PageProps) {
 
 export async function generateStaticParams() {
   const cars = await getCars();
-
   const ids = cars.map((car) => ({
     carId: car._id.toString(),
   }));
@@ -36,7 +31,7 @@ export async function generateStaticParams() {
   return ids;
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: CarDetailPageProps) {
   const car = await getCarById(params.carId);
 
   if (!car) {
@@ -64,7 +59,6 @@ export default async function Page({ params }: PageProps) {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center p-6 ">
       <div className="shadow-md rounded-lg overflow-hidden max-w-4xl w-full border border-gray-700">
-        {/* Car Image */}
         <div className="relative h-96 w-full">
           <Image
             src={image}
@@ -73,7 +67,6 @@ export default async function Page({ params }: PageProps) {
             objectFit="cover"
             className="transition-transform duration-500 hover:scale-105"
           />
-          {/* Availability Badge */}
           <div
             className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
               available ? "bg-green-500" : "bg-red-600"
@@ -81,7 +74,6 @@ export default async function Page({ params }: PageProps) {
           >
             {available ? "Available" : "Not Available"}
           </div>
-          {/* Discount Badge */}
           {discount > 0 && (
             <div className="absolute top-4 left-4 bg-red-600 px-3 py-1 text-sm font-semibold rounded-lg shadow-md">
               Save ${discount}
@@ -89,11 +81,8 @@ export default async function Page({ params }: PageProps) {
           )}
         </div>
 
-        {/* Car Info */}
         <div className="p-6">
           <h2 className="text-3xl font-bold mb-4">{name}</h2>
-
-          {/* Car Price and Discount */}
           <div className="flex items-center gap-4 mb-4">
             {discount > 0 ? (
               <>
@@ -108,7 +97,6 @@ export default async function Page({ params }: PageProps) {
             <span className="text-lg">/ day</span>
           </div>
 
-          {/* Capacity */}
           <div className="flex items-center gap-2 text-lg mb-4">
             <UsersIcon className="h-5 w-5" />
             Seats up to <span className="font-semibold">
@@ -117,12 +105,10 @@ export default async function Page({ params }: PageProps) {
             passengers
           </div>
 
-          {/* Description */}
           <p className="text-lg mb-8">
             {description || "No description available for this car."}
           </p>
 
-          {/* Engine Specifications */}
           <div className=" p-4 rounded-lg mb-4">
             <h3 className="text-xl font-semibold mb-2">
               Engine Specifications
@@ -135,7 +121,6 @@ export default async function Page({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Features */}
           <div className=" p-4 rounded-lg mb-4">
             <h3 className="text-xl font-semibold mb-2">Features</h3>
             <div>
@@ -149,7 +134,7 @@ export default async function Page({ params }: PageProps) {
               </div>
               <div className="flex items-center mb-1">
                 <InformationCircleIcon className="h-5 w-5 text-gray-500 mr-2" />
-                {/* <span>Safety Features: {features.safety.join(", ")}</span> */}
+                <span>Safety Features: {features.safety.join(", ")}</span>
               </div>
               <div className="flex items-center mb-1">
                 <InformationCircleIcon className="h-5 w-5 text-gray-500 mr-2" />
@@ -157,8 +142,6 @@ export default async function Page({ params }: PageProps) {
               </div>
             </div>
           </div>
-
-          {/* Performance */}
           <div className=" p-4 rounded-lg mb-4">
             <h3 className="text-xl font-semibold mb-2">Performance</h3>
             <div>
@@ -176,8 +159,6 @@ export default async function Page({ params }: PageProps) {
               </div>
             </div>
           </div>
-
-          {/* Customer Reviews */}
           {customerReviews.length > 0 && (
             <div className=" p-4 rounded-lg mb-4">
               <h3 className="text-xl font-semibold mb-2">Customer Reviews</h3>
@@ -190,18 +171,16 @@ export default async function Page({ params }: PageProps) {
               ))}
             </div>
           )}
-
-          {/* Action Buttons */}
           <div className="flex justify-between items-center">
-            <a
-              href="/cars"
+            <Link
+              href={ROUTE_CONSTANTS.cars}
               className="inline-block px-6 py-3 bg-gray-600  font-semibold rounded-lg shadow hover: transition-all duration-300 ease-in-out"
             >
               Back to Cars
-            </a>
+            </Link>
             {available ? (
               <a
-                href={`/book/${params.carId}`}
+                href={`${ROUTE_CONSTANTS.booking}/${params.carId}`}
                 className="inline-block px-6 py-3 bg-red-600 font-semibold rounded-lg shadow hover:bg-red-700 transition-all duration-300 ease-in-out"
               >
                 Book Now &rarr;
