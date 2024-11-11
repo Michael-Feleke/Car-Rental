@@ -1,11 +1,7 @@
 "use client";
 
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
-
-interface ErrorProps {
-  error: Error;
-  reset: () => void;
-}
+import { ErrorProps } from "./types";
 
 function Error({ error, reset }: ErrorProps) {
   return (
