@@ -1,4 +1,4 @@
-import { getCountries } from "../_api/getCountries";
+import { getCountries } from "../_lib/api/getCountries";
 import { SelectCountryProps } from "./types";
 
 async function SelectCountry({
