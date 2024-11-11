@@ -1,8 +1,9 @@
 import SelectCountry from "@/app/_components/SelectCountry";
+import { MetaTitles } from "@/app/_utils/enums";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Update profile",
+  title: MetaTitles.Profile,
 };
 
 export default function Page() {
