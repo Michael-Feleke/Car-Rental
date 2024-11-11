@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   },
   description:
     "Made with ❤️ by Michael Feleke ,GoDrive is a car rental service that allows you to rent cars at an affordable price.",
+  openGraph: {
+    title: "GoDrive - Affordable Car Rental",
+    description:
+      "Experience quality and affordability with GoDrive's wide range of vehicles. Rent your next ride today!",
+    siteName: "GoDrive",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
