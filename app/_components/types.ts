@@ -60,3 +60,7 @@ export interface SelectCountryProps {
   id: string;
   className: string;
 }
+
+export interface carListProps {
+  capacity: "large" | "small" | "medium";
+}
