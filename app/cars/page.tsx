@@ -2,16 +2,16 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import CarList from "../_components/CarList";
 import Spinner from "../_components/Spinner";
-import { CAR_LISTS_REVALIDATE_TIME } from "../_utils/constants";
 import { MetaTitles } from "../_utils/enums";
-
-export const revalidate = CAR_LISTS_REVALIDATE_TIME;
+import { CarsPageProps } from "./types";
+import Filter from "../_components/Filter";
 
 export const metadata: Metadata = {
   title: MetaTitles.Cars,
 };
 
-function Page() {
+function Page({ searchParams }: CarsPageProps) {
+  const { capacity } = searchParams;
   return (
     <div>
       <h1 className="text-4xl mb-5 text-red-500 font-medium">
@@ -26,9 +26,11 @@ function Page() {
         needs. Experience the ultimate in luxury and sophistication with our
         top-of-the-line cars.
       </p>
-
-      <Suspense fallback={<Spinner />}>
-        <CarList />
+      <div className="mb-8 flex justify-end">
+        <Filter />
+      </div>
+      <Suspense fallback={<Spinner />} key={capacity}>
+        <CarList capacity={capacity} />
       </Suspense>
     </div>
   );
