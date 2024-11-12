@@ -35,6 +35,6 @@ export interface CarInterface extends Document {
 }
 
 export interface CarModelInterface extends Model<CarInterface> {
-  findAllCars(): Promise<CarInterface[]>;
+  findAllCars(capacity: "small" | "medium" | "large"): Promise<CarInterface[]>;
   findCarById(id: string): Promise<CarInterface | null>;
 }
