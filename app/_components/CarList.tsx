@@ -1,8 +1,9 @@
 import { getCars } from "../_lib/getCars";
 import CarCard from "./CarCard";
+import { carListProps } from "./types";
 
-async function CarList() {
-  const cars = await getCars();
+async function CarList({ capacity }: carListProps) {
+  const cars = await getCars(capacity);
 
   if (cars.length === 0) {
     return (
