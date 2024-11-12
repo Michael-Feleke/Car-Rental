@@ -60,10 +60,8 @@ function CarCard({ car }: CarCardProps) {
         <div className="flex items-center gap-2 justify-start mb-6">
           {discount > 0 ? (
             <>
-              <p className="text-3xl font-bold text-red-400">
-                ${dailyPrice - discount}
-              </p>
-              <p className="line-through text-gray-400">${dailyPrice}</p>
+              <p className="text-3xl font-bold">${dailyPrice - discount}</p>
+              <p className="line-through text-red-400">${dailyPrice}</p>
             </>
           ) : (
             <p className="text-3xl font-bold text-white">${dailyPrice}</p>
