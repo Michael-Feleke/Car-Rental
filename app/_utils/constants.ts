@@ -11,7 +11,6 @@ export const ROUTE_CONSTANTS = {
 };
 
 // revalidate time in seconds
-export const CAR_LISTS_REVALIDATE_TIME = 3600;
 export const ABOUT_PAGE_REVALIDATE_TIME = 86400;
 
 // api URL
