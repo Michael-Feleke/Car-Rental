@@ -35,5 +35,4 @@ function Page({ searchParams }: CarsPageProps) {
     </div>
   );
 }
-
 export default Page;
