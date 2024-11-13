@@ -4,4 +4,9 @@
 
 body {
   @apply bg-background text-text;
+
+  .rdp-root {
+    --rdp-accent-color: red;
+    --rdp-accent-background-color: gray;
+  }
 }
