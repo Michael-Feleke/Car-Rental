@@ -2,7 +2,6 @@ export const ROUTE_CONSTANTS = {
   home: "/",
   cars: "/cars",
   about: "/about",
-  booking: "/booking",
   account: {
     base: "/account",
     profile: "/account/profile",
