@@ -11,3 +11,5 @@ const Car =
   mongoose.model<CarInterface, CarModelInterface>("Car", carSchema);
 
 export default Car;
+
+

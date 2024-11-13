@@ -3,7 +3,7 @@ import { CarInterface } from "./types";
 
 export async function findAllCars(
   this: Model<CarInterface>,
-  capacity: "large" | "medium" | "small"
+  capacity?: "large" | "medium" | "small"
 ) {
   let matchCondition = {};
   if (capacity === "small") matchCondition = { maxCapacity: { $lte: 4 } };
