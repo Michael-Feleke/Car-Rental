@@ -1,3 +1,7 @@
+import { DateRange } from "react-day-picker";
+import { CarInterface } from "../_models/car/types";
+import { settingInterface } from "../_models/setting/types";
+
 export interface customerReviews {
   name: string;
   comment: string;
@@ -63,4 +67,18 @@ export interface SelectCountryProps {
 
 export interface carListProps {
   capacity: "large" | "small" | "medium";
+}
+
+export interface carDetailProps {
+  car: CarInterface;
+}
+
+export interface DateSelectorProps {
+  setting: settingInterface;
+}
+
+export interface ReservationContextType {
+  range: DateRange | undefined;
+  setRange: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+  resetRange: () => void;
 }
