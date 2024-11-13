@@ -1,4 +1,4 @@
-import { getCars } from "../_lib/getCars";
+import { getCars } from "../_services/car";
 import CarCard from "./CarCard";
 import { carListProps } from "./types";
 
