@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import aboutImage from "@/public/images/bg-car-2.jpg";
 import Image from "next/image";
-import { getCars } from "../_lib/getCars";
 import { MetaTitles } from "../_utils/enums";
 import {
   ABOUT_PAGE_REVALIDATE_TIME,
   ROUTE_CONSTANTS,
 } from "../_utils/constants";
 import Link from "next/link";
+import { getCars } from "../_services/car";
 
 export const revalidate = ABOUT_PAGE_REVALIDATE_TIME;
 
