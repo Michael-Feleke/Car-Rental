@@ -7,4 +7,6 @@ export const errorMessages = {
   invalidObjectId: "Invalid ObjectId",
   countryFetchFailed: (err: string) => `Failed to fetch countries:${err} `,
   unknownError: "An unknown error occurred",
+  contextOutOfTheProvider: (contextName: string, providerName: string) =>
+    `use${contextName} must be used within a ${providerName}`,
 };
