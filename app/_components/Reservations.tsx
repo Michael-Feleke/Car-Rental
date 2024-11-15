@@ -8,13 +8,9 @@ async function Reservations() {
   const setting = await getSetting();
   const session = await auth();
 
-  console.log({ session });
-
-  const plainSetting = JSON.parse(JSON.stringify(setting));
-
   return (
     <>
-      <DateSelector setting={plainSetting} />
+      <DateSelector setting={setting} />
       {session?.user ? (
         <ReservationForm user={session.user} />
       ) : (
