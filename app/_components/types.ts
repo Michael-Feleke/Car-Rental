@@ -1,6 +1,7 @@
 import { DateRange } from "react-day-picker";
 import { CarInterface } from "../_models/car/types";
 import { settingInterface } from "../_models/setting/types";
+import { User } from "next-auth";
 
 export interface customerReviews {
   name: string;
@@ -81,4 +82,8 @@ export interface ReservationContextType {
   range: DateRange | undefined;
   setRange: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
   resetRange: () => void;
+}
+
+export interface ReservationFormProps {
+  user: User;
 }
