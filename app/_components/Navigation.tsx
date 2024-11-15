@@ -1,34 +1,30 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { routes } from "../_utils/routes";
+import { auth } from "../_lib/auth";
+import NavigationLists from "./NavigationLists";
+import Image from "next/image";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
 
-function Navigation() {
-  const pathname = usePathname();
+async function Navigation() {
+  const session = await auth();
 
   return (
     <nav className="z-10">
-      <ul className="flex space-x-8 p-">
-        {routes.map((route) => (
-          <li key={route.path}>
-            <Link
-              href={route.path}
-              className={`text-xl ${
-                pathname === ROUTE_CONSTANTS.home &&
-                route.path === ROUTE_CONSTANTS.home
-                  ? "text-red-500"
-                  : pathname.startsWith(route.path) &&
-                    route.path !== ROUTE_CONSTANTS.home
-                  ? "text-red-500"
-                  : "text-gray-300"
-              } hover:text-red-500 transition duration-200 ease-in-out`}
-            >
-              {route.label}
+      <ul className="flex space-x-8 p-2 items-center">
+        <NavigationLists />
+        <li>
+          {session?.user?.image && (
+            <Link href={ROUTE_CONSTANTS.account.base}>
+              <Image
+                width={40}
+                height={40}
+                src={session?.user?.image}
+                className="rounded-full"
+                alt={session?.user?.name || "image of the google user"}
+                referrerPolicy="no-referrer"
+              />
             </Link>
-          </li>
-        ))}
+          )}
+        </li>
       </ul>
     </nav>
   );
