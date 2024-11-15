@@ -3,7 +3,7 @@ import { ROUTE_CONSTANTS } from "../_utils/constants";
 
 function LoginMessage() {
   return (
-    <div className="grid bg-gray-800 p-10">
+    <div className="grid bg-gray-800 px-16 py-2">
       <p className="text-center text-xl py-12 self-center">
         Please{" "}
         <Link href={ROUTE_CONSTANTS.login} className="underline text-red-500">
