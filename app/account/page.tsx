@@ -1,12 +1,17 @@
 import { Metadata } from "next";
 import { MetaTitles } from "../_utils/enums";
+import { auth } from "../_lib/auth";
 
 export const metadata: Metadata = {
   title: MetaTitles.Account,
 };
 
-function page() {
-  return <h2 className="text-2xl  text-red-500">Welcome, Michael</h2>;
+async function page() {
+  const session = await auth();
+
+  return (
+    <h2 className="text-2xl  text-red-500">Welcome, {session?.user?.name}</h2>
+  );
 }
 
 export default page;
