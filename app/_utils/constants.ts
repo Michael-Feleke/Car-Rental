@@ -7,6 +7,7 @@ export const ROUTE_CONSTANTS = {
     profile: "/account/profile",
     reservations: "/account/reservations",
   },
+  login: "/login",
 };
 
 // revalidate time in seconds
