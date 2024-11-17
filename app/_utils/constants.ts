@@ -10,8 +10,13 @@ export const ROUTE_CONSTANTS = {
   login: "/login",
 };
 
-// revalidate time in seconds
+export const LOG_LEVELS = {
+  debug: 0,
+  info: 1,
+  warn: 2,
+  error: 3,
+} as const;
+
 export const ABOUT_PAGE_REVALIDATE_TIME = 86400;
 
-// api URL
 export const COUNTRIES_API_URL = "https://restcountries.com/v3.1/all";
