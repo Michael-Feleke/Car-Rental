@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import CarList from "../_components/CarList";
-import Spinner from "../_components/Spinner";
-import { MetaTitles } from "../_utils/enums";
+import CarList from "../../_components/CarList";
+import Spinner from "../../_components/Spinner";
+import { MetaTitles } from "../../_utils/enums";
 import { CarsPageProps } from "./types";
-import Filter from "../_components/Filter";
+import Filter from "../../_components/Filter";
 
 export const metadata: Metadata = {
   title: MetaTitles.Cars,

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { MetaTitles } from "../_utils/enums";
-import { auth } from "../_lib/auth";
+import { MetaTitles } from "../../_utils/enums";
+import { auth } from "../../_lib/auth";
 
 export const metadata: Metadata = {
   title: MetaTitles.Account,
