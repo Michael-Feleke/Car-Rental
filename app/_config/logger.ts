@@ -1,4 +1,4 @@
-import { LOG_LEVELS } from "../_utils/constants";
+import { COLORS, LOG_LEVELS } from "../_utils/constants";
 import { Environments, LogLevels } from "../_utils/enums";
 import { ENVIRONMENT, LOG_LEVEL } from "./environments";
 
@@ -11,10 +11,11 @@ const simpleLogger = (level: LogLevel, message: string): void => {
 
   if (LOG_LEVELS[level] >= LOG_LEVELS[currentLogLevel]) {
     const timestamp = new Date().toISOString();
+    const color = COLORS[level] || COLORS.reset;
     const logMessage =
       ENVIRONMENT === Environments.Production
-        ? `${timestamp} [${level}] ${message}`
-        : `[${level}] ${message}`;
+        ? `${timestamp} [${color}${level}${COLORS.reset}] ${message}`
+        : `[${color}${level}${COLORS.reset}] ${message}`;
 
     if (level === LogLevels.Error) {
       console.error(logMessage);
