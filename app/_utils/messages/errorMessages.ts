@@ -9,4 +9,6 @@ export const errorMessages = {
   unknownError: "An unknown error occurred",
   contextOutOfTheProvider: (contextName: string, providerName: string) =>
     `use${contextName} must be used within a ${providerName}`,
+  notValidUser: "Missing user email or name",
+  signInError: (err: string) => `Error during signing in ${err}`,
 };
