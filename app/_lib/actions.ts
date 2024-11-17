@@ -4,7 +4,7 @@ import { ROUTE_CONSTANTS } from "../_utils/constants";
 import { signIn, signOut } from "./auth";
 
 export async function signInAction() {
-  await signIn("google", { redirectTo: "http://localhost:3000/account" });
+  await signIn("google", { redirectTo: ROUTE_CONSTANTS.account.base });
 }
 
 export async function signOutAction() {
