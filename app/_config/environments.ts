@@ -6,8 +6,8 @@ const envSchema = Joi.object({
   MORGAN_FORMAT: Joi.string().required(),
   NEXT_PUBLIC_ENVIRONMENT: Joi.string().required(),
   NEXT_PUBLIC_LOG_LEVEL: Joi.string().required(),
-  AUTH_GOOGLE_ID: Joi.string().required(),
-  AUTH_GOOGLE_SECRET: Joi.string().required(),
+  GOOGLE_CLIENT_ID: Joi.string().required(),
+  GOOGLE_CLIENT_SECRET: Joi.string().required(),
 })
   .unknown()
   .required();
@@ -22,5 +22,5 @@ export const MONGO_URI = value.MONGO_URI;
 export const MORGAN_FORMAT = value.MORGAN_FORMAT;
 export const ENVIRONMENT = value.NEXT_PUBLIC_ENVIRONMENT;
 export const LOG_LEVEL = value.NEXT_PUBLIC_LOG_LEVEL;
-export const AUTH_GOOGLE_ID = value.AUTH_GOOGLE_ID;
-export const AUTH_GOOGLE_SECRET = value.AUTH_GOOGLE_SECRET;
+export const GOOGLE_CLIENT_ID = value.GOOGLE_CLIENT_ID;
+export const GOOGLE_CLIENT_SECRET = value.GOOGLE_CLIENT_SECRET;
