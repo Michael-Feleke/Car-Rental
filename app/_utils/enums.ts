@@ -27,3 +27,10 @@ export enum MongooseConnectionEvent {
   Disconnected = "disconnected",
   Error = "error",
 }
+
+export enum LogLevels {
+  Error = "error",
+  Warn = "warn",
+  Debug = "debug",
+  Info = "info",
+}
