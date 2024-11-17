@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MONGO_URI } from "../_config/environments";
-import logger from "../_config/winston";
+import logger from "../_config/logger";
 import { errorMessages } from "../_utils/messages/errorMessages";
 import { logMessages } from "../_utils/messages/logMessages";
 
