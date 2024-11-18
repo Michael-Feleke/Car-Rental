@@ -15,10 +15,6 @@ function Error({ error, reset }: ErrorProps) {
           ? error.message
           : "We’re sorry, but it looks like an unexpected error has occurred."}
       </p>
-      <p className=" mb-8">
-        We apologize for the inconvenience. Our technical team has been alerted
-        and is actively addressing the issue. Please try again shortly.
-      </p>
       <button
         onClick={reset}
         className="inline-block bg-red-600  px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition duration-300"
