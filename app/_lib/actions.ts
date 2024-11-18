@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { updateProfileSchema } from "../_schema/validationSchema";
 import { updateUser } from "../_services/user";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
@@ -34,4 +35,8 @@ export const updateProfile = withMiddleware(async (session, formData) => {
     countryFlag,
     drivingLicense,
   });
+
+  revalidatePath(
+    `${ROUTE_CONSTANTS.account.base}/${ROUTE_CONSTANTS.account.profile}`
+  );
 }, updateProfileSchema);
