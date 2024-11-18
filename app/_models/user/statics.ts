@@ -14,3 +14,12 @@ export async function findUserByEmail(
 ) {
   return await this.findOne({ email });
 }
+
+export async function findUserByIdAndUpdate(
+  this: Model<UserInterface>,
+  userId: string,
+  user: Omit<UserInterface, "_id,name,email">
+) {
+  const _id = userId;
+  return this.findByIdAndUpdate(_id, user, { new: true });
+}
