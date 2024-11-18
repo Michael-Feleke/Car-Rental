@@ -1,11 +1,22 @@
 "use client";
 
-function UpdateProfileForm({ children }: { children: React.ReactNode }) {
+import Image from "next/image";
+import { UpdateProfileFormProps } from "./types";
+import { updateProfile } from "../_lib/actions";
+
+function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
+  const { name, email, drivingLicense, countryFlag } = user;
+
   return (
-    <form className="bg-gray-900 py-8 px-12 text-lg flex gap-6 flex-col">
+    <form
+      action={updateProfile}
+      className="bg-gray-900 py-8 px-12 text-lg flex gap-6 flex-col"
+    >
       <div className="space-y-2">
         <label>Full name</label>
         <input
+          defaultValue={name}
+          name="name"
           disabled
           className="px-5 py-3 bg-gray-700 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-800 disabled:text-gray-400 focus:outline-gray-600 focus:outline-none "
         />
@@ -14,6 +25,8 @@ function UpdateProfileForm({ children }: { children: React.ReactNode }) {
       <div className="space-y-2">
         <label>Email address</label>
         <input
+          defaultValue={email}
+          name="email"
           disabled
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-800 disabled:text-gray-400 focus:outline-gray-600 focus:outline-none"
         />
@@ -21,15 +34,27 @@ function UpdateProfileForm({ children }: { children: React.ReactNode }) {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="nationality">Your nationality</label>
+          <label htmlFor="country">Your nationality</label>
         </div>
-        {children}
+        <div className="space-y-2">
+          <div className="flex items-center justify-end">
+            <Image
+              width={30}
+              height={30}
+              src={countryFlag ?? ""}
+              alt="Country flag"
+              className="h-5 rounded-sm"
+            />
+          </div>
+          {children}
+        </div>
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="licenseNumber">Driver&apos;s License Number</label>
+        <label htmlFor="drivingLicense">Driver&apos;s License Number</label>
         <input
-          name="licenseNumber"
+          name="drivingLicense"
+          defaultValue={drivingLicense}
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm focus:outline-gray-600 focus:outline-none"
         />
       </div>
