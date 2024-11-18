@@ -31,7 +31,7 @@ export default async function Page() {
           name="country"
           id="country"
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm focus:outline-gray-600 focus:outline-none"
-          defaultCountry={user.country}
+          defaultCountry={user?.country}
         />
       </UpdateProfileForm>
     </div>
