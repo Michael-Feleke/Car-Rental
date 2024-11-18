@@ -3,13 +3,18 @@ import { Metadata } from "next";
 
 import SelectCountry from "@/app/_components/SelectCountry";
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
+import { auth } from "@/app/_lib/auth";
+import { getUser } from "@/app/_services/user";
 
 export const metadata: Metadata = {
   title: MetaTitles.Profile,
 };
 
-export default function Page() {
-  const nationality = "Ethiopia";
+export default async function Page() {
+  const session = await auth();
+  const email = session?.user?.email ?? "";
+  const user = await getUser(email);
+  const plainUser = user ? JSON.parse(JSON.stringify(user)) : null;
 
   return (
     <div>
@@ -21,12 +26,12 @@ export default function Page() {
         Providing the following information will make your rental process faster
         and smoother. We can&apos;t wait to hand over the keys!
       </p>
-      <UpdateProfileForm>
+      <UpdateProfileForm user={plainUser}>
         <SelectCountry
-          name="nationality"
-          id="nationality"
+          name="country"
+          id="country"
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm focus:outline-gray-600 focus:outline-none"
-          defaultCountry={nationality}
+          defaultCountry={user.country}
         />
       </UpdateProfileForm>
     </div>
