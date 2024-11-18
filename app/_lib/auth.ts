@@ -40,6 +40,22 @@ const authConfig = {
         return false;
       }
     },
+    async session({ session }: { session: Session }) {
+      try {
+        const email = session.user?.email ?? "";
+        if (email) {
+          const fetchedUser = await getUser(email);
+          if (fetchedUser) {
+            session.user.userId = fetchedUser._id;
+          }
+        }
+        return session;
+      } catch (error) {
+        if (error instanceof Error)
+          logger.error(errorMessages.sessionError(error.message));
+        return session;
+      }
+    },
   },
   pages: {
     signIn: ROUTE_CONSTANTS.login,
