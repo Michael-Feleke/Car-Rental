@@ -11,4 +11,5 @@ export const errorMessages = {
     `use${contextName} must be used within a ${providerName}`,
   notValidUser: "Missing user email or name",
   signInError: (err: string) => `Error during signing in ${err}`,
+  sessionError: (err: string) => `Error during session modification ${err}`,
 };
