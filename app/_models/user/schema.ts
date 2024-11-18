@@ -16,8 +16,11 @@ const userSchema = new Schema(
     country: {
       type: String,
     },
-    nationalId: {
-      type: Number,
+    countryFlag: {
+      type: String,
+    },
+    drivingLicense: {
+      type: String,
     },
   },
   {
