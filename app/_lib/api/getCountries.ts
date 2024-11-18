@@ -16,9 +16,10 @@ export async function getCountries() {
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch (error: unknown) {
-    if (error instanceof Error)
+    if (error instanceof Error) {
       logger.error(errorMessages.countryFetchFailed(error.message));
-    else
+      throw new Error(errorMessages.countryFetchFailed(error.message));
+    } else
       logger.error(
         errorMessages.countryFetchFailed(errorMessages.unknownError)
       );
