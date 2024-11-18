@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { UpdateProfileFormProps } from "./types";
 import { updateProfile } from "../_lib/actions";
+import { useFormStatus } from "react-dom";
 
 function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
   const { name, email, drivingLicense, countryFlag } = user;
@@ -58,13 +59,23 @@ function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm focus:outline-gray-600 focus:outline-none"
         />
       </div>
-
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-red-600 px-8 py-4 text-lg font-semibold hover:bg-red-700 transition-all duration-200 ease-in-out rounded-lg disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 ">
-          Update profile
-        </button>
+        <Button />
       </div>
     </form>
+  );
+}
+
+function Button() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="bg-red-600 px-8 py-4 text-lg font-semibold hover:bg-red-700 transition-all duration-200 ease-in-out rounded-lg disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 "
+      disabled={pending}
+    >
+      {pending ? "Updating..." : "Update profile"}
+    </button>
   );
 }
 
