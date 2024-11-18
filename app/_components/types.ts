@@ -2,6 +2,7 @@ import { DateRange } from "react-day-picker";
 import { CarInterface } from "../_models/car/types";
 import { settingInterface } from "../_models/setting/types";
 import { User } from "next-auth";
+import { UserInterface } from "../_models/user/types";
 
 export interface customerReviews {
   name: string;
@@ -60,7 +61,7 @@ export interface DeleteReservationProps {
 }
 
 export interface SelectCountryProps {
-  defaultCountry: string;
+  defaultCountry?: string;
   name: string;
   id: string;
   className: string;
@@ -86,4 +87,9 @@ export interface ReservationContextType {
 
 export interface ReservationFormProps {
   user: User;
+}
+
+export interface UpdateProfileFormProps {
+  children: React.ReactNode;
+  user: UserInterface;
 }
