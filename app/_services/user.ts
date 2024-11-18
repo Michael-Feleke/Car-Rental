@@ -17,3 +17,9 @@ export async function getUser(email: string) {
 
   return user;
 }
+
+export async function updateUser(userId: string, user: Partial<UserInterface>) {
+  await clientPromise();
+  const updatedUser = await User.findUserByIdAndUpdate(userId, user);
+  return updatedUser;
+}
