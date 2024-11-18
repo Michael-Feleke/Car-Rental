@@ -5,10 +5,15 @@ export interface UserInterface extends Document {
   name: string;
   email: string;
   country?: string;
-  nationalId?: string;
+  countryFlag?: string;
+  drivingLicense?: string;
 }
 
 export interface UserModelInterface extends Model<UserInterface> {
   signUpUser(newUser: Omit<UserInterface, "_id">): Promise<UserInterface>;
   findUserByEmail(email: string): Promise<UserInterface>;
+  findUserByIdAndUpdate(
+    userId: string,
+    user: Partial<UserInterface>
+  ): Promise<UserInterface>;
 }
