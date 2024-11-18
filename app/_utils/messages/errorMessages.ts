@@ -12,4 +12,6 @@ export const errorMessages = {
   notValidUser: "Missing user email or name",
   signInError: (err: string) => `Error during signing in ${err}`,
   sessionError: (err: string) => `Error during session modification ${err}`,
+  authorizationError: "You must be logged in",
+  invalidDrivingLicense: "Please provide a valid driving license",
 };
