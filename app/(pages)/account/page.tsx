@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 
 async function page() {
   const session = await auth();
-
   return (
     <h2 className="text-2xl  text-red-500">Welcome, {session?.user?.name}</h2>
   );
