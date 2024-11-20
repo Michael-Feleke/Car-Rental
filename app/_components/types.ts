@@ -3,6 +3,10 @@ import { CarInterface } from "../_models/car/types";
 import { settingInterface } from "../_models/setting/types";
 import { User } from "next-auth";
 import { UserInterface } from "../_models/user/types";
+import {
+  IPopulatedReservation,
+  ReservationInterface,
+} from "../_models/reservation/types";
 
 export interface customerReviews {
   name: string;
@@ -43,21 +47,11 @@ export interface CarCardProps {
 }
 
 export interface ReservationCardProps {
-  booking: {
-    id: number;
-    customerId: number;
-    startDate: string;
-    endDate: string;
-    numDays: number;
-    totalPrice: number;
-    car: Car;
-    status: string;
-    created_at: string;
-  };
+  reservation: IPopulatedReservation;
 }
 
 export interface DeleteReservationProps {
-  bookingId: number;
+  reservationId: string;
 }
 
 export interface SelectCountryProps {
