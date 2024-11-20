@@ -36,3 +36,18 @@ export async function getReservations(
 
   return reservations;
 }
+
+export async function deleteReservation(
+  id: string
+): Promise<IPopulatedReservation> {
+  await clientPromise();
+  if (!ObjectId.isValid(id)) {
+    throw new Error(errorMessages.invalidObjectId);
+  }
+
+  const deletedReservation = await Reservation.deleteReservation(id);
+
+  if (!deletedReservation) notFound();
+
+  return deletedReservation;
+}
