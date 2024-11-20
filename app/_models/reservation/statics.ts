@@ -16,3 +16,10 @@ export async function getReservations(
     .populate("user", "name email")
     .populate("car", "name image");
 }
+
+export async function deleteReservation(
+  this: Model<ReservationInterface>,
+  id: string
+) {
+  return this.deleteOne({ _id: id });
+}
