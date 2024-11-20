@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import { Schema } from "joi";
 
 export function withMiddleware(
-  handler: (session: Session, formData: FormData) => Promise<void>,
+  handler: (session: Session, formData?: FormData) => Promise<void>,
   schema?: Schema
 ) {
   return async (formData: FormData) => {
