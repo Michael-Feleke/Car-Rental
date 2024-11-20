@@ -19,7 +19,7 @@ export const accountRoutes: IRoute[] = [
     label: RouteLabels.Profile,
   },
   {
-    path: ROUTE_CONSTANTS.account.reservations,
+    path: ROUTE_CONSTANTS.account.reservations.base,
     label: RouteLabels.Reservations,
   },
 ];
