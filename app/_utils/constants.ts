@@ -7,7 +7,11 @@ export const ROUTE_CONSTANTS = {
   account: {
     base: "/account",
     profile: "/account/profile",
-    reservations: "/account/reservations",
+    reservations: {
+      base: "/account/reservations",
+      edit: "/account/reservations/edit",
+      delete: "/account/reservations/delete",
+    },
   },
   login: "/login",
 };
