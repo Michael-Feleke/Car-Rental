@@ -1,10 +1,11 @@
+"use client";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { DeleteReservationProps } from "./types";
 
-function DeleteReservation({ bookingId }: DeleteReservationProps) {
+function DeleteReservation({ reservationId }: DeleteReservationProps) {
   const handleDelete = () => {
     // You can add confirmation logic or a deletion request here
-    console.log(`Deleting reservation with ID: ${bookingId}`);
+    console.log(`Deleting reservation with ID: ${reservationId}`);
     // Call your backend deletion service, e.g., deleteReservation(bookingId)
   };
 
