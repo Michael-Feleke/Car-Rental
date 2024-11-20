@@ -30,4 +30,5 @@ export interface ReservationModelInterface extends Model<ReservationInterface> {
     reservation: Omit<ReservationInterface, "_id">
   ): Promise<ReservationInterface>;
   getReservations(id: string): Promise<IPopulatedReservation[]>;
+  deleteReservation(id: string): Promise<IPopulatedReservation>;
 }
