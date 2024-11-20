@@ -3,6 +3,8 @@ import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import DeleteReservation from "./DeleteReservation";
 import { ReservationCardProps } from "./types";
 import Image from "next/image";
+import Link from "next/link";
+import { ROUTE_CONSTANTS } from "../_utils/constants";
 
 export const formatDistanceFromNow = (dateStr: string) =>
   formatDistance(parseISO(dateStr), new Date(), {
@@ -17,18 +19,18 @@ function ReservationCard({ reservation }: ReservationCardProps) {
     numberOfDays,
     totalPrice,
     car: { name, image },
-    status,
+    // status,
     createdAt,
   } = reservation;
 
   return (
-    <div className="flex border border-primary-800">
+    <div className="flex border border-gray-800">
       <div className="relative h-32 aspect-square">
         <Image
-          src={image}
+          src={image || ""}
           fill
           alt={`Car ${name}`}
-          className="object-cover border-r border-primary-800"
+          className="object-cover border-r border-gray-800"
         />
       </div>
 
@@ -48,7 +50,7 @@ function ReservationCard({ reservation }: ReservationCardProps) {
           )}
         </div>
 
-        <p className="text-lg text-primary-300">
+        <p className="text-lg text-gray-300">
           {format(new Date(startDate), "EEE, MMM dd yyyy")} (
           {isToday(new Date(startDate))
             ? "Today"
@@ -57,23 +59,27 @@ function ReservationCard({ reservation }: ReservationCardProps) {
         </p>
 
         <div className="flex gap-5 mt-auto items-baseline">
-          <p className="text-xl font-semibold text-accent-400">${totalPrice}</p>
-          <p className="text-primary-300">&bull;</p>
-          <p className="ml-auto text-sm text-primary-400">
+          <p className="text-xl font-semibold text-green-400">${totalPrice}</p>
+          <p className="text-gray-300">&bull;</p>
+          <p className="ml-auto text-sm text-gray-400">
             Reserved {format(new Date(createdAt), "EEE, MMM dd yyyy, p")}
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col border-l border-primary-800 w-[100px]">
-        <a
-          href={`/account/reservations/edit/${_id}`}
-          className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
-        >
-          <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-          <span className="mt-1">Edit</span>
-        </a>
-        <DeleteReservation reservationId={_id} />
+      <div className="flex flex-col border-l border-gray-800 w-[100px]">
+        {!isPast(startDate) ? (
+          <>
+            <Link
+              href={`${ROUTE_CONSTANTS.account.reservations.edit}/${_id}`}
+              className="group flex items-center gap-2 uppercase text-xs font-bold text-gray-300 border-b border-gray-800 flex-grow px-3 hover:bg-green-600 transition-colors hover:text-gray-900"
+            >
+              <PencilSquareIcon className="h-5 w-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
+              <span className="mt-1">Edit</span>
+            </Link>
+            <DeleteReservation reservationId={_id} />
+          </>
+        ) : null}
       </div>
     </div>
   );
