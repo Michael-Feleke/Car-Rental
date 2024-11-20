@@ -77,7 +77,7 @@ function ReservationCard({ reservation }: ReservationCardProps) {
               <PencilSquareIcon className="h-5 w-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteReservation reservationId={_id} />
+            <DeleteReservation reservationId={_id.toString()} />
           </>
         ) : null}
       </div>
