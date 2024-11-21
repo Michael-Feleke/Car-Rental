@@ -1,15 +1,23 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { updateProfileSchema } from "../_schema/validationSchema";
+import {
+  editReservationSchema,
+  updateProfileSchema,
+} from "../_schema/validationSchema";
 import { updateUser } from "../_services/user";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
 import { errorMessages } from "../_utils/messages/errorMessages";
 import { signIn, signOut } from "./auth";
-import { deleteReservation, getReservations } from "../_services/reservation";
+import {
+  deleteReservation,
+  getReservations,
+  updateReservation,
+} from "../_services/reservation";
 import { getSession } from "../_utils/helpers/getSession";
 import { validateFormData } from "../_utils/helpers/validateFormData";
 import { ObjectId } from "mongodb";
+import { redirect } from "next/navigation";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: ROUTE_CONSTANTS.account.base });
@@ -48,6 +56,38 @@ export async function updateProfile(formData: FormData) {
   );
 }
 
+export async function editReservation(formData: FormData) {
+  const session = await getSession();
+  const userId = session.user?.userId || "";
+  await validateFormData(formData, editReservationSchema);
+
+  const numberOfPassengers = parseInt(
+    formData.get("numberOfPassengers") as string,
+    10
+  );
+  const description = (formData.get("description") as string) || "";
+  const reservationId = (formData?.get("reservationId") as string) ?? "";
+
+  const userReservations = await getReservations(userId);
+
+  const userReservationIds = userReservations.map((reservation) =>
+    reservation._id.toString()
+  );
+
+  if (!userReservationIds.includes(reservationId))
+    throw new Error(errorMessages.unauthorizedEdit);
+
+  const updatedReservation = {
+    numberOfPassengers,
+    description,
+  };
+
+  await updateReservation(reservationId, updatedReservation);
+
+  revalidatePath(`${ROUTE_CONSTANTS.account.reservations.base}`);
+  redirect(`${ROUTE_CONSTANTS.account.reservations.base}`);
+}
+
 export async function handleDeleteReservation(reservationId: string) {
   const session = await getSession();
   const userId = session.user?.userId || "";
@@ -66,5 +106,5 @@ export async function handleDeleteReservation(reservationId: string) {
     throw new Error(errorMessages.unauthorizedDelete);
 
   await deleteReservation(reservationId);
-  revalidatePath(`${ROUTE_CONSTANTS.account.reservations}`);
+  revalidatePath(`${ROUTE_CONSTANTS.account.reservations.base}`);
 }
