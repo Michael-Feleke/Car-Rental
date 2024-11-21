@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { auth } from "../_lib/auth";
 import NavigationLists from "./NavigationLists";
 import Image from "next/image";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
+import { getSession } from "../_utils/helpers/getSession";
 
 async function Navigation() {
-  const session = await auth();
+  const session = await getSession();
 
   return (
     <nav className="z-10">

@@ -1,7 +1,7 @@
 import ReservationCard from "@/app/_components/ReservationCard";
-import { auth } from "@/app/_lib/auth";
 import { getReservations } from "@/app/_services/reservation";
 import { MetaTitles } from "@/app/_utils/enums";
+import { getSession } from "@/app/_utils/helpers/getSession";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const session = await auth();
+  const session = await getSession();
   const userId = session?.user?.userId || "";
   const reservations = await getReservations(userId);
 

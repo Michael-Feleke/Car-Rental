@@ -3,15 +3,15 @@ import { Metadata } from "next";
 
 import SelectCountry from "@/app/_components/SelectCountry";
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
-import { auth } from "@/app/_lib/auth";
 import { getUser } from "@/app/_services/user";
+import { getSession } from "@/app/_utils/helpers/getSession";
 
 export const metadata: Metadata = {
   title: MetaTitles.Profile,
 };
 
 export default async function Page() {
-  const session = await auth();
+  const session = await getSession();
   const email = session?.user?.email ?? "";
   const user = await getUser(email);
   const plainUser = user ? JSON.parse(JSON.stringify(user)) : null;
