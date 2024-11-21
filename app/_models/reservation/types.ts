@@ -9,6 +9,7 @@ export interface ReservationInterface extends Document {
   startDate: Date;
   endDate: Date;
   status: string;
+  numberOfPassengers: number;
   numberOfDays: number;
   totalPrice: number;
 }
@@ -21,6 +22,7 @@ export interface IPopulatedReservation {
   endDate: Date;
   status: string;
   numberOfDays: number;
+  numberOfPassengers: number;
   totalPrice: number;
   createdAt: Date;
 }
@@ -31,4 +33,5 @@ export interface ReservationModelInterface extends Model<ReservationInterface> {
   ): Promise<ReservationInterface>;
   getReservations(id: string): Promise<IPopulatedReservation[]>;
   deleteReservation(id: string): Promise<IPopulatedReservation>;
+  findReservationById(id: string): Promise<IPopulatedReservation>;
 }
