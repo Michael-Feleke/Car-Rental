@@ -1,7 +1,7 @@
-// import { EditReservationProps } from "./types";
-
 import { getSingleReservation } from "@/app/_services/reservation";
 import { EditReservationProps } from "./types";
+import { editReservation } from "@/app/_lib/actions";
+import EditProfileButton from "@/app/_components/EditProfileButton";
 
 export async function generateMetadata({ params }: EditReservationProps) {
   const reservation = await getSingleReservation(params.reservationId);
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: EditReservationProps) {
   };
 }
 
-export default async function Page({ params }: EditReservationProps) {
+async function Page({ params }: EditReservationProps) {
   const reservation = await getSingleReservation(params.reservationId);
 
   const {
@@ -28,22 +28,30 @@ export default async function Page({ params }: EditReservationProps) {
         Edit Reservation #{reservationId.toString()} for {carName}
       </h2>
 
-      <form className="bg-gray-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <form
+        action={editReservation}
+        className="bg-gray-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      >
+        <input
+          type="hidden"
+          name="reservationId"
+          value={reservationId.toString()}
+        />
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
+          <label htmlFor="numberOfPassengers">How many Passengers?</label>
           <select
-            name="numGuests"
-            id="numGuests"
+            name="numberOfPassengers"
+            id="numberOfPassengers"
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
             required
           >
             <option value="" key="">
-              Select number of guests...
+              Select number of Passengers...
             </option>
             {Array.from({ length: maxCapacity ?? 0 }, (_, i) => i + 1).map(
               (x) => (
                 <option value={x} key={x}>
-                  {x} {x === 1 ? "guest" : "guests"}
+                  {x} {x === 1 ? "passenger" : "Passengers"}
                 </option>
               )
             )}
@@ -51,21 +59,21 @@ export default async function Page({ params }: EditReservationProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="description">
             Anything we should know about your stay?
           </label>
           <textarea
-            name="observations"
+            name="description"
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <button className="bg-red-500 px-8 py-4  font-semibold hover:bg-red-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update reservation
-          </button>
+          <EditProfileButton />
         </div>
       </form>
     </div>
   );
 }
+
+export default Page;
