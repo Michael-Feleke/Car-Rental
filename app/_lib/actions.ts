@@ -4,10 +4,11 @@ import { revalidatePath } from "next/cache";
 import { updateProfileSchema } from "../_schema/validationSchema";
 import { updateUser } from "../_services/user";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
-import { withMiddleware } from "../_utils/helpers/withMiddleware";
 import { errorMessages } from "../_utils/messages/errorMessages";
 import { signIn, signOut } from "./auth";
 import { deleteReservation } from "../_services/reservation";
+import { getSession } from "../_utils/helpers/getSession";
+import { validateFormData } from "../_utils/helpers/validateFormData";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: ROUTE_CONSTANTS.account.base });
@@ -17,7 +18,11 @@ export async function signOutAction() {
   await signOut({ redirectTo: ROUTE_CONSTANTS.home });
 }
 
-export const updateProfile = withMiddleware(async (session, formData) => {
+export async function updateProfile(formData: FormData) {
+  const session = await getSession();
+
+  await validateFormData(formData, updateProfileSchema);
+
   const userId = session.user?.userId;
   if (!userId) throw new Error(errorMessages.authorizationError);
 
@@ -40,10 +45,9 @@ export const updateProfile = withMiddleware(async (session, formData) => {
   revalidatePath(
     `${ROUTE_CONSTANTS.account.base}/${ROUTE_CONSTANTS.account.profile}`
   );
-}, updateProfileSchema);
-
-export const handleDeleteReservation = async (reservationId: string) => {
+}
+export async function handleDeleteReservation(reservationId: string) {
+  await getSession();
   await deleteReservation(reservationId);
-
   revalidatePath(`${ROUTE_CONSTANTS.account.reservations}`);
-};
+}
