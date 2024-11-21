@@ -1,3 +1,4 @@
+import { ROUTE_CONSTANTS } from "@/app/_utils/constants";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
@@ -11,7 +12,7 @@ function NotFound() {
         removed, renamed, or is temporarily unavailable.
       </p>
       <Link
-        href="/cars"
+        href={ROUTE_CONSTANTS.cars}
         className="inline-block bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out"
       >
         &larr; Back to Cars
