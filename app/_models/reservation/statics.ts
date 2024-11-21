@@ -17,6 +17,15 @@ export async function getReservations(
     .populate("car", "name image");
 }
 
+export async function findReservationById(
+  this: Model<ReservationInterface>,
+  id: string
+) {
+  return this.findById(id)
+    .populate("user", "name email")
+    .populate("car", "name maxCapacity");
+}
+
 export async function deleteReservation(
   this: Model<ReservationInterface>,
   id: string
