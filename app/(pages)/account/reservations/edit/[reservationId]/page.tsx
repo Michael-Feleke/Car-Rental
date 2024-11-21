@@ -2,6 +2,8 @@ import { getSingleReservation } from "@/app/_services/reservation";
 import { EditReservationProps } from "./types";
 import { editReservation } from "@/app/_lib/actions";
 import EditProfileButton from "@/app/_components/EditProfileButton";
+import Link from "next/link";
+import { ROUTE_CONSTANTS } from "@/app/_utils/constants";
 
 export async function generateMetadata({ params }: EditReservationProps) {
   const reservation = await getSingleReservation(params.reservationId);
@@ -20,6 +22,8 @@ async function Page({ params }: EditReservationProps) {
   const {
     _id: reservationId,
     car: { maxCapacity, name: carName },
+    numberOfPassengers,
+    description,
   } = reservation;
 
   return (
@@ -44,6 +48,7 @@ async function Page({ params }: EditReservationProps) {
             id="numberOfPassengers"
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
             required
+            defaultValue={numberOfPassengers}
           >
             <option value="" key="">
               Select number of Passengers...
@@ -64,11 +69,18 @@ async function Page({ params }: EditReservationProps) {
           </label>
           <textarea
             name="description"
+            defaultValue={description}
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
           />
         </div>
 
-        <div className="flex justify-end items-center gap-6">
+        <div className="flex justify-between items-center gap-6">
+          <Link
+            href={ROUTE_CONSTANTS.account.reservations.base}
+            className="inline-block px-6 py-3 bg-gray-700  font-semibold rounded-lg shadow hover: transition-all duration-300 ease-in-out"
+          >
+            &larr; Cancel
+          </Link>
           <EditProfileButton />
         </div>
       </form>
