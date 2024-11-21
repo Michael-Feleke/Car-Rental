@@ -14,4 +14,5 @@ export const errorMessages = {
   sessionError: (err: string) => `Error during session modification ${err}`,
   authorizationError: "You must be logged in",
   invalidDrivingLicense: "Please provide a valid driving license",
+  unauthorizedDelete: "You are not allowed to delete this reservation",
 };
