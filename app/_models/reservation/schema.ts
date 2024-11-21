@@ -48,6 +48,9 @@ const reservationSchema = new Schema(
         message: "Total price must be non-negative",
       },
     },
+    description: {
+      type: String,
+    },
   },
   {
     timestamps: true,
