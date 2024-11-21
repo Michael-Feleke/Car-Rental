@@ -19,7 +19,7 @@ function ReservationCard({ reservation }: ReservationCardProps) {
     numberOfDays,
     totalPrice,
     car: { name, image },
-    // status,
+    numberOfPassengers,
     createdAt,
   } = reservation;
 
@@ -60,7 +60,10 @@ function ReservationCard({ reservation }: ReservationCardProps) {
 
         <div className="flex gap-5 mt-auto items-baseline">
           <p className="text-xl font-semibold text-green-400">${totalPrice}</p>
-          <p className="text-gray-300">&bull;</p>
+          <p className="text-gray-300">
+            &bull; {numberOfPassengers}{" "}
+            {numberOfPassengers > 1 ? "passengers" : "passenger"}
+          </p>
           <p className="ml-auto text-sm text-gray-400">
             Reserved {format(new Date(createdAt), "EEE, MMM dd yyyy, p")}
           </p>
