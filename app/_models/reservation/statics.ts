@@ -32,3 +32,20 @@ export async function deleteReservation(
 ) {
   return this.deleteOne({ _id: id });
 }
+
+export async function editReservationById(
+  this: Model<ReservationInterface>,
+  id: string,
+  updatedReservation: Partial<ReservationInterface>
+) {
+  return this.findOneAndUpdate(
+    { _id: id },
+    {
+      $set: updatedReservation,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+}
