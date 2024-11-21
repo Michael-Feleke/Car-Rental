@@ -22,6 +22,7 @@ async function page() {
   // };
 
   // await createReservation(reservation);
+
   const session = await getSession();
   return (
     <h2 className="text-2xl  text-red-500">Welcome, {session?.user?.name}</h2>
