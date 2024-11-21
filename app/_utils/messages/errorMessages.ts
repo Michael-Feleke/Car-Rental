@@ -15,4 +15,5 @@ export const errorMessages = {
   authorizationError: "You must be logged in",
   invalidDrivingLicense: "Please provide a valid driving license",
   unauthorizedDelete: "You are not allowed to delete this reservation",
+  unauthorizedEdit: "You are not allowed to edit this reservation",
 };
