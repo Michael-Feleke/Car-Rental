@@ -65,3 +65,21 @@ export async function deleteReservation(
 
   return deletedReservation;
 }
+
+export async function updateReservation(
+  id: string,
+  updatedReservation: Partial<ReservationInterface>
+) {
+  if (!ObjectId.isValid(id)) {
+    throw new Error(errorMessages.invalidObjectId);
+  }
+
+  const reservation = await Reservation.editReservationById(
+    id,
+    updatedReservation
+  );
+
+  if (!reservation) notFound();
+
+  return reservation;
+}
