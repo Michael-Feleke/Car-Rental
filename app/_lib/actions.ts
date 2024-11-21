@@ -6,9 +6,10 @@ import { updateUser } from "../_services/user";
 import { ROUTE_CONSTANTS } from "../_utils/constants";
 import { errorMessages } from "../_utils/messages/errorMessages";
 import { signIn, signOut } from "./auth";
-import { deleteReservation } from "../_services/reservation";
+import { deleteReservation, getReservations } from "../_services/reservation";
 import { getSession } from "../_utils/helpers/getSession";
 import { validateFormData } from "../_utils/helpers/validateFormData";
+import { ObjectId } from "mongodb";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: ROUTE_CONSTANTS.account.base });
@@ -46,8 +47,24 @@ export async function updateProfile(formData: FormData) {
     `${ROUTE_CONSTANTS.account.base}/${ROUTE_CONSTANTS.account.profile}`
   );
 }
+
 export async function handleDeleteReservation(reservationId: string) {
-  await getSession();
+  const session = await getSession();
+  const userId = session.user?.userId || "";
+
+  if (!ObjectId.isValid(reservationId)) {
+    throw new Error(errorMessages.invalidObjectId);
+  }
+
+  const userReservations = await getReservations(userId);
+
+  const userReservationIds = userReservations.map((reservation) =>
+    reservation._id.toString()
+  );
+
+  if (!userReservationIds.includes(reservationId))
+    throw new Error(errorMessages.unauthorizedDelete);
+
   await deleteReservation(reservationId);
   revalidatePath(`${ROUTE_CONSTANTS.account.reservations}`);
 }
