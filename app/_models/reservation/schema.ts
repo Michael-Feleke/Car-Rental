@@ -36,6 +36,10 @@ const reservationSchema = new Schema(
         message: "Number of days must be greater than 0",
       },
     },
+    numberOfPassengers: {
+      type: Number,
+      required: true,
+    },
     totalPrice: {
       type: Number,
       required: true,
