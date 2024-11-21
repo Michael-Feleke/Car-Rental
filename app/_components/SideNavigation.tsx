@@ -9,6 +9,7 @@ import { accountRoutes } from "../_utils/routes";
 import Link from "next/link";
 import SignOutButton from "./SingOutButton";
 import { usePathname } from "next/navigation";
+import { ROUTE_CONSTANTS } from "../_utils/constants";
 
 function SideNavigation() {
   const pathName = usePathname();
@@ -19,7 +20,13 @@ function SideNavigation() {
           <li key={route.label}>
             <Link
               className={`py-3 px-5 hover:bg-gray-800 text-gray-300  transition-colors flex items-center gap-4 font-semibold  ${
-                pathName === route.path ? "bg-gray-800" : ""
+                pathName === ROUTE_CONSTANTS.account.base &&
+                route.path === ROUTE_CONSTANTS.account.base
+                  ? "bg-gray-800"
+                  : pathName.startsWith(route.path) &&
+                    route.path !== ROUTE_CONSTANTS.account.base
+                  ? "bg-gray-800"
+                  : ""
               }`}
               href={route.path}
             >
