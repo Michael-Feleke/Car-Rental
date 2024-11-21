@@ -37,6 +37,20 @@ export async function getReservations(
   return reservations;
 }
 
+export async function getSingleReservation(
+  id: string
+): Promise<IPopulatedReservation> {
+  if (!ObjectId.isValid(id)) {
+    throw new Error(errorMessages.invalidObjectId);
+  }
+
+  const reservation = await Reservation.findReservationById(id);
+
+  if (!reservation) notFound();
+
+  return reservation;
+}
+
 export async function deleteReservation(
   id: string
 ): Promise<IPopulatedReservation> {
