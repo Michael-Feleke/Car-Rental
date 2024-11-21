@@ -85,6 +85,10 @@ export async function editReservation(formData: FormData) {
   await updateReservation(reservationId, updatedReservation);
 
   revalidatePath(`${ROUTE_CONSTANTS.account.reservations.base}`);
+  revalidatePath(
+    `${ROUTE_CONSTANTS.account.reservations.edit}/${reservationId}`
+  );
+
   redirect(`${ROUTE_CONSTANTS.account.reservations.base}`);
 }
 
