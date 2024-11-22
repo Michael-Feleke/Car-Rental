@@ -83,3 +83,16 @@ export async function updateReservation(
 
   return reservation;
 }
+
+export async function getCarReservationByAllUsers(
+  id: string
+): Promise<IPopulatedReservation[]> {
+  await clientPromise();
+  if (!ObjectId.isValid(id)) {
+    throw new Error(errorMessages.invalidObjectId);
+  }
+
+  const reservations = await Reservation.findAllUsersReservationByCarId(id);
+
+  return reservations;
+}
