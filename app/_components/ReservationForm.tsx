@@ -1,9 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import { ReservationFormProps } from "./types";
+import { useReservation } from "./ReservationContext";
+import { differenceInDays } from "date-fns";
+import { createReservation } from "../_lib/actions";
+import { useFormStatus } from "react-dom";
 
-function ReservationForm({ user }: ReservationFormProps) {
-  // CHANGE
-  const maxCapacity = 10;
+function ReservationForm({ user, car }: ReservationFormProps) {
+  const { range, resetRange } = useReservation();
+  const { maxCapacity, dailyPrice, discount, _id } = car;
+
+  const startDate = range?.to;
+  const endDate = range?.from;
+
+  const numberOfDays =
+    range?.from && range?.to ? differenceInDays(range.to, range.from) : 0;
+  const totalPrice = numberOfDays * (dailyPrice - discount);
+
+  const reservationData = {
+    startDate,
+    endDate,
+    numberOfDays,
+    totalPrice,
+    car: _id,
+  };
+
+  const createReservationWithData = createReservation.bind(
+    null,
+    reservationData
+  );
 
   return (
     <div className="scale-[1.01]">
@@ -23,12 +49,18 @@ function ReservationForm({ user }: ReservationFormProps) {
         </div>
       </div>
 
-      <form className="bg-gray-900 py-10 px-16 text-lg flex gap-5 flex-col">
+      <form
+        action={async (formData: FormData) => {
+          await createReservationWithData(formData);
+          resetRange();
+        }}
+        className="bg-gray-900 py-10 px-16 text-lg flex gap-5 flex-col"
+      >
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many passengers?</label>
+          <label htmlFor="numberOfPassengers">How many passengers?</label>
           <select
-            name="numGuests"
-            id="numGuests"
+            name="numberOfPassengers"
+            id="numberOfPassengers"
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
             required
           >
@@ -44,26 +76,39 @@ function ReservationForm({ user }: ReservationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="description">
             Anything we should know about your stay?
           </label>
           <textarea
-            name="observations"
-            id="observations"
+            name="description"
+            id="description"
             className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm"
             placeholder="Any pets, allergies, special requirements, etc.?"
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <p className=" text-base">Start by selecting dates</p>
-
-          <button className="inline-block px-6 py-3 bg-red-600 font-semibold rounded-lg shadow hover:bg-red-700 transition-all duration-300 ease-in-out">
-            Reserve now
-          </button>
+          {!(startDate && endDate) ? (
+            <p className=" text-base">Start by selecting dates</p>
+          ) : (
+            <Button />
+          )}
         </div>
       </form>
     </div>
+  );
+}
+
+function Button() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="bg-red-600 px-8 py-4 text-lg font-semibold hover:bg-red-700 transition-all duration-200 ease-in-out rounded-lg disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 "
+      disabled={pending}
+    >
+      {pending ? "Reserving..." : "Reserve now"}
+    </button>
   );
 }
 
