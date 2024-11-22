@@ -49,3 +49,10 @@ export async function editReservationById(
     }
   );
 }
+
+export async function findAllUsersReservationByCarId(
+  this: Model<ReservationInterface>,
+  id: string
+) {
+  return this.find({ car: id }).sort({ startDate: 1 });
+}
