@@ -40,4 +40,5 @@ export interface ReservationModelInterface extends Model<ReservationInterface> {
     id: string,
     updatedReservation: Partial<ReservationInterface>
   ): Promise<IPopulatedReservation>;
+  findAllUsersReservationByCarId(id: string): Promise<IPopulatedReservation[]>;
 }
