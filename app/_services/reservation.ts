@@ -9,8 +9,8 @@ import { ObjectId } from "mongodb";
 import Reservation from "../_models/reservation";
 import Car from "../_models/car";
 
-export async function createReservation(
-  reservation: Omit<ReservationInterface, "_id,createdAt">
+export async function createNewReservation(
+  reservation: Partial<ReservationInterface>
 ) {
   await clientPromise();
 
