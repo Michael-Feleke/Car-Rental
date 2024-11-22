@@ -83,6 +83,7 @@ export interface ReservationContextType {
 
 export interface ReservationFormProps {
   user: User;
+  car: Pick<CarInterface, "maxCapacity" | "dailyPrice" | "discount" | "_id">;
 }
 
 export interface UpdateProfileFormProps {
