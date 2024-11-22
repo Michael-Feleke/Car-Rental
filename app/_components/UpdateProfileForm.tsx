@@ -35,7 +35,7 @@ function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="country">Your nationality</label>
+          <label htmlFor="country">Your nationalityyyy</label>
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-end">
