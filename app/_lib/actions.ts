@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import {
+  createReservationSchema,
   editReservationSchema,
   updateProfileSchema,
 } from "../_schema/validationSchema";
@@ -10,6 +11,7 @@ import { ROUTE_CONSTANTS } from "../_utils/constants";
 import { errorMessages } from "../_utils/messages/errorMessages";
 import { signIn, signOut } from "./auth";
 import {
+  createNewReservation,
   deleteReservation,
   getReservations,
   updateReservation,
@@ -111,4 +113,37 @@ export async function handleDeleteReservation(reservationId: string) {
 
   await deleteReservation(reservationId);
   revalidatePath(`${ROUTE_CONSTANTS.account.reservations.base}`);
+}
+
+export async function createReservation(
+  reservationData: {
+    startDate: Date | undefined;
+    endDate: Date | undefined;
+    numberOfDays: number;
+    totalPrice: number;
+    car: string;
+  },
+  formData: FormData
+) {
+  const session = await getSession();
+  await validateFormData(formData, createReservationSchema);
+
+  const userId = session.user?.userId;
+  if (!userId) throw new Error(errorMessages.authorizationError);
+
+  const numberOfPassengers = Number(formData?.get("numberOfPassengers"));
+
+  const description = formData?.get("description") as string;
+
+  const newReservation = {
+    ...reservationData,
+    user: userId,
+    numberOfPassengers,
+    description,
+    status: "pending",
+  };
+
+  await createNewReservation(newReservation);
+  revalidatePath(`${ROUTE_CONSTANTS.cars}/${reservationData.car}`);
+  redirect(`${ROUTE_CONSTANTS.thankyou}`);
 }
