@@ -38,7 +38,7 @@ function DateSelector({ setting, car, reservations }: DateSelectorProps) {
   ];
 
   return (
-    <div className="flex flex-col justify-between border border-gray-700">
+    <div className="flex flex-col p-20 gap-4 justify-between border border-gray-700">
       <DayPicker
         className="pt -12 place-self-center"
         classNames={{
@@ -57,10 +57,9 @@ function DateSelector({ setting, car, reservations }: DateSelectorProps) {
         numberOfMonths={1}
         disabled={disabledDays}
       />
-
-      <div className="flex items-center justify-between px-8 bg-gray-600  h-[72px]">
-        <div className="flex items-baseline gap-6">
-          <p className="flex gap-2 items-baseline">
+      <div className="flex items-center justify-between px-8 bg-gray-600 w-full  h-[72px]">
+        <div className="flex justify-between items-center gap-6 w-full">
+          <p className="flex gap-2 items-center">
             {discount > 0 ? (
               <>
                 <span className="text-2xl">${dailyPrice - discount}</span>
@@ -71,19 +70,8 @@ function DateSelector({ setting, car, reservations }: DateSelectorProps) {
             ) : (
               <span className="text-2xl">${dailyPrice}</span>
             )}
-            <span className="">/night</span>
+            <span className="">/day</span>
           </p>
-          {numberOfDays > 0 ? (
-            <>
-              <p className=" px-3 py-2 bg-gray-800 text-2xl">
-                <span>&times;</span> <span>{numberOfDays}</span>
-              </p>
-              <p className="mr-2">
-                <span className="text-lg font-bold uppercase">Total=</span>{" "}
-                <span className="text-2xl font-semibold">${carPrice}</span>
-              </p>
-            </>
-          ) : null}
         </div>
 
         {range?.from || range?.to ? (
@@ -95,6 +83,17 @@ function DateSelector({ setting, car, reservations }: DateSelectorProps) {
           </button>
         ) : null}
       </div>
+      {numberOfDays > 0 ? (
+        <div className="flex items-center justify-between px-8 bg-gray-600 w-full  h-[72px]">
+          <p className=" px-3 w-20 py-2 bg-gray-800 text-2xl">
+            <span>&times;</span> <span>{numberOfDays}</span>
+          </p>
+          <p className="mr-2 w-40">
+            <span className="text-lg font-bold uppercase">Total=</span>{" "}
+            <span className="text-2xl font-semibold">${carPrice}</span>
+          </p>
+        </div>
+      ) : null}{" "}
     </div>
   );
 }
