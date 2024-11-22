@@ -16,8 +16,14 @@ async function Reservations({ car }: ReservationsProps) {
     to: new Date(reservation.endDate),
   }));
 
-  const { dailyPrice, discount } = car;
-  const carData = { dailyPrice, discount };
+  const { maxCapacity, dailyPrice, discount, _id } = car;
+  const dateSelectorCarData = { dailyPrice, discount };
+  const reservationFormCarData = {
+    maxCapacity,
+    dailyPrice,
+    discount,
+    _id: _id.toString(),
+  };
 
   const { minRentDuration, maxRentDuration } = setting;
   const plainSetting = { minRentDuration, maxRentDuration };
@@ -26,11 +32,11 @@ async function Reservations({ car }: ReservationsProps) {
     <>
       <DateSelector
         setting={plainSetting}
-        car={carData}
+        car={dateSelectorCarData}
         reservations={reservedRanges}
       />
       {session?.user ? (
-        <ReservationForm user={session.user} />
+        <ReservationForm car={reservationFormCarData} user={session.user} />
       ) : (
         <LoginMessage />
       )}
