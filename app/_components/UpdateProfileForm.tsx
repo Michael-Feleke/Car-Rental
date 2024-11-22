@@ -35,7 +35,7 @@ function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="country">Your nationalityyyy</label>
+          <label htmlFor="country">Your nationality</label>
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-end">
@@ -54,6 +54,7 @@ function UpdateProfileForm({ children, user }: UpdateProfileFormProps) {
       <div className="space-y-2">
         <label htmlFor="drivingLicense">Driver&apos;s License Number</label>
         <input
+          required
           name="drivingLicense"
           defaultValue={drivingLicense}
           className="px-5 py-3 bg-gray-700  w-full shadow-sm rounded-sm focus:outline-gray-600 focus:outline-none"
