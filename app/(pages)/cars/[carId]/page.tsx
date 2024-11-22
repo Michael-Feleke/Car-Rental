@@ -41,7 +41,7 @@ export default async function Page({ params }: CarDetailPageProps) {
       <div className="flex items-center justify-center min-h[400px] pt-7 gap-2">
         {car.available ? (
           <Suspense fallback={<Spinner />}>
-            <Reservations />
+            <Reservations car={car} />
           </Suspense>
         ) : (
           <p className="text-2xl font-semibold text-red-500">Not Available</p>
