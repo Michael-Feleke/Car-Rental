@@ -4,4 +4,5 @@ export const middleware = auth;
 
 export const config = {
   matcher: ["/account/:path*", "/account"],
+  unstable_allowDynamic: ["/node_modules/mongoose/**"],
 };
