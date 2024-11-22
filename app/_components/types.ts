@@ -3,10 +3,7 @@ import { CarInterface } from "../_models/car/types";
 import { settingInterface } from "../_models/setting/types";
 import { User } from "next-auth";
 import { UserInterface } from "../_models/user/types";
-import {
-  IPopulatedReservation,
-  ReservationInterface,
-} from "../_models/reservation/types";
+import { IPopulatedReservation } from "../_models/reservation/types";
 
 export interface customerReviews {
   name: string;
@@ -70,7 +67,12 @@ export interface carDetailProps {
 }
 
 export interface DateSelectorProps {
-  setting: settingInterface;
+  setting: Pick<settingInterface, "minRentDuration" | "maxRentDuration">;
+  car: {
+    dailyPrice: number;
+    discount: number;
+  };
+  reservations: DateRange[];
 }
 
 export interface ReservationContextType {
@@ -86,4 +88,8 @@ export interface ReservationFormProps {
 export interface UpdateProfileFormProps {
   children: React.ReactNode;
   user: UserInterface;
+}
+
+export interface ReservationsProps {
+  car: CarInterface;
 }
