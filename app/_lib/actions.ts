@@ -37,7 +37,7 @@ export async function updateProfile(formData: FormData) {
   const userId = session.user?.userId;
   if (!userId) throw new Error(errorMessages.authorizationError);
 
-  const countryValue = formData?.get("country") as string;
+  const countryValue = formData?.get("country");
   let country = "";
   let countryFlag = "";
 
