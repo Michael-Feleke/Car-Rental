@@ -32,7 +32,7 @@ function ReservationForm({ user, car }: ReservationFormProps) {
   );
 
   return (
-    <div className="scale-[1.01]">
+    <div className="scale-[1.01] ">
       <div className="bg-gray-800 px-16 py-2 flex justify-between items-center">
         <p>Logged in as {user.name}</p>
 
@@ -69,7 +69,7 @@ function ReservationForm({ user, car }: ReservationFormProps) {
             </option>
             {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
               <option value={x} key={x}>
-                {x} {x === 1 ? "guest" : "guests"}
+                {x} {x === 1 ? "passenger" : "passengers"}
               </option>
             ))}
           </select>
