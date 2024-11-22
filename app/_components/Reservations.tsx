@@ -1,13 +1,13 @@
+import { auth } from "../_lib/auth";
 import { getCarReservationByAllUsers } from "../_services/reservation";
 import { getSetting } from "../_services/setting";
-import { getSession } from "../_utils/helpers/getSession";
 import DateSelector from "./DateSelector";
 import LoginMessage from "./LoginMessage";
 import ReservationForm from "./ReservationForm";
 import { ReservationsProps } from "./types";
 
 async function Reservations({ car }: ReservationsProps) {
-  const session = await getSession();
+  const session = await auth();
   const setting = await getSetting();
   const reservations = await getCarReservationByAllUsers(car._id.toString());
 
@@ -29,7 +29,7 @@ async function Reservations({ car }: ReservationsProps) {
   const plainSetting = { minRentDuration, maxRentDuration };
 
   return (
-    <>
+    <div className="flex items-center gap-32 ">
       <DateSelector
         setting={plainSetting}
         car={dateSelectorCarData}
@@ -40,7 +40,7 @@ async function Reservations({ car }: ReservationsProps) {
       ) : (
         <LoginMessage />
       )}
-    </>
+    </div>
   );
 }
 
