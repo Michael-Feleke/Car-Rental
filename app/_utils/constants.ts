@@ -13,6 +13,7 @@ export const ROUTE_CONSTANTS = {
       delete: "/account/reservations/delete",
     },
   },
+  thankyou: "/cars/thankyou",
   login: "/login",
 };
 
