@@ -42,3 +42,15 @@ export const editReservationSchema = Joi.object({
     "string.max": `"description" should have a maximum length of 500 characters`,
   }),
 });
+
+export const createReservationSchema = Joi.object({
+  numberOfPassengers: Joi.number().required().messages({
+    "number.base": `"numberOfPassengers" should be a type of 'number'`,
+    "any.required": `"numberOfPassengers" is a required field`,
+  }),
+
+  description: Joi.string().max(500).messages({
+    "string.base": `"description" should be a type of 'text'`,
+    "string.max": `"description" should have a maximum length of 500 characters`,
+  }),
+});
