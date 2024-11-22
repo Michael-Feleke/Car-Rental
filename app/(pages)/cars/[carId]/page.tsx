@@ -1,5 +1,4 @@
 import { CarDetailPageProps } from "./types";
-
 import { getCarById, getCars } from "@/app/_services/car";
 import Reservations from "@/app/_components/Reservations";
 import CarDetail from "@/app/_components/CarDetail";
