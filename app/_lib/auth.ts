@@ -37,6 +37,7 @@ const authConfig = {
       } catch (error) {
         if (error instanceof Error)
           logger.error(errorMessages.signInError(error.message));
+
         return false;
       }
     },
@@ -46,13 +47,14 @@ const authConfig = {
         if (email) {
           const fetchedUser = await getUser(email);
           if (fetchedUser) {
-            session.user.userId = fetchedUser._id;
+            session.user.userId = fetchedUser._id.toString();
           }
         }
         return session;
       } catch (error) {
-        if (error instanceof Error)
+        if (error instanceof Error) {
           logger.error(errorMessages.sessionError(error.message));
+        }
         return session;
       }
     },
