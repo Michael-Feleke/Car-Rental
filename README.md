@@ -18,23 +18,23 @@ GoDrive is a modern, user-friendly platform for browsing, reserving, and managin
 
 ### 🏠 Home Page
 
-The landing page showcases featured vehicles, offers, and links to explore cars or manage your account.
+![Home Page](./public/images/landing%20page.png)
 
 ### 🚗 Cars Page
 
-A collection of available vehicles for rental with filtering options to refine your search.
+![Cars Page](./public/images/cars%20page%20hover.png)
 
 ### 🔍 Car Detail Page
 
-Detailed information about a selected car, including its specifications, features, pricing, and images.
+![Car Detail](./public/images/car%20detail.png)
 
 ### 📝 Reservation Form
 
-A simple form to reserve a car by specifying rental dates, pickup location, and preferences.
+![Car Detail](./public/images/reservation%20form.png)
 
 ### 👤 Your Account Page
 
-Manage your profile, update personal information, and view your past and current reservations.
+![Your Account](./public/images/account%20page.png)
 
 ## ⚙️ Installation
 
