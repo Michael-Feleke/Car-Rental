@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GoDrive Car Rental Application
 
-## Getting Started
+GoDrive is a modern, user-friendly platform for browsing, reserving, and managing car rentals. It features seamless authentication, real-time reservation updates, and a dynamic interface for a smooth booking experience.
 
-First, run the development server:
+## 🚀 Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[GoDrive Car Rental Demo](https://godrivecar.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Secure authentication for personalized access.
+- Real-time updates for reservations.
+- Advanced filtering to search cars by type, availability, and more.
+- Profile management for viewing and updating personal details.
+- Intuitive and responsive design.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 Pages
 
-## Learn More
+### 🏠 Home Page
 
-To learn more about Next.js, take a look at the following resources:
+The landing page showcases featured vehicles, offers, and links to explore cars or manage your account.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🚗 Cars Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A collection of available vehicles for rental with filtering options to refine your search.
 
-## Deploy on Vercel
+### 🔍 Car Detail Page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Detailed information about a selected car, including its specifications, features, pricing, and images.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📝 Reservation Form
+
+A simple form to reserve a car by specifying rental dates, pickup location, and preferences.
+
+### 👤 Your Account Page
+
+Manage your profile, update personal information, and view your past and current reservations.
+
+## ⚙️ Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Michael-Feleke/Car-Rental.git
+
+2. Navigate to the project directroy:
+   ```bash
+   cd Car-Rental
+
+3. Install dependencies:
+   ```bash
+   yarn
+
+4. Start the development server:
+   ```bash
+   yarn dev
+   
+6. Open in your browser: Visit http://localhost:3000.
+
+
+## 🛠 Technologies Used
+Frontend: React, TypeScript, Material-UI
+Backend: Node.js, Express.js
+State Management: Redux Toolkit
+Database: MongoDB
+Deployment: Vercel
+
+
+## Happy driving! 🚘
+
+
+
+
+
+
+
+
